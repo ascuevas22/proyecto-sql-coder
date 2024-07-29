@@ -68,3 +68,68 @@ Tablas:
 - **Seguimiento de cliente:** Permite el almacenamiento y gestion centralizada de informacion de clientes, mejorando la relacion y estrategias de marketing
 
 En resumen esta base de datos mejorarà la precision, eficiencia, seguridad y capacidad de toma de decisiones en la gestion de tiendas de ventas de respuestos.
+
+# SEGUNDA PARTE DE LA ENTREGA
+
+## Segunda PreEntrga de SQL
+* Listado de Vistas más una descripción detallada, su objetivo, y qué tablas las componen.
+* Listado de Funciones que incluyan una descripción detallada, el objetivo para la cual fueron creadas y qué datos o tablas manipulan y/o son implementadas.
+* Listado de Stored Procedures con una descripción detallada, qué objetivo o beneficio aportan al proyecto, y las tablas que lo componen y/o tablas con las que interactúa
+* Listado de Triggers
+
+### Documentacion de Vistas
+
+### Vista: TotalClientesPorSucursal
+
+**Descripción:** Vista para conocer la cantidad de clientes que han comprado por sucursal con el fin de manejar este KPI para realizar distintas acciones de marketing entre otros.
+
+**Columnas:**
+
+**nombre:** Indica el nombre de la sucursal
+**idsucursal:** Entrega el numero de sucursal asociada al conteo total de clientes
+**total_clientes:** Conteo de clientes unicos asociados a cada sucursal
+
+**Ejemplo de consulta:**
+
+```sql
+CREATE VIEW TotalClientesPorSucursal AS
+SELECT 
+    S.idsucursal,
+    S.nombre AS nombre_sucursal,
+    COUNT(DISTINCT V.idcliente) AS total_clientes
+FROM 
+    SUCURSAL S
+LEFT JOIN 
+    VENTAS V ON S.idsucursal = V.idsucursal
+GROUP BY 
+    S.idsucursal, S.nombre;
+```
+
+### Vista: ProductosPorCategoria
+
+**Descripción:** -- Esta vista va a proporcionar un listado de categorias con el numero total de productos por cada categoria, con el fin de poder determinar cuales
+son las categorias de repuestos con menos productos dentro del inventario para tomar acciones como equilibrar la oferta de productos hacia los clientes.
+
+**Columnas:**
+
+**nombre:** Indica el nombre de la categoria
+**idcategoria:** Entrega el numero interno de la categoria
+**total_productos:** Muestra el numero total de productos asociados a una categoria
+
+**Ejemplo de consulta:**
+
+```sql
+CREATE VIEW ProductosPorCategoria AS
+SELECT 
+    C.idcategoria,
+    C.nombre AS nombre_categoria,
+    COUNT(P.idproducto) AS total_productos
+FROM 
+    CATEGORIA C
+LEFT JOIN 
+    PRODUCTO P ON C.idcategoria = P.idcategoria
+GROUP BY 
+    C.idcategoria, C.nombre;
+```
+
+
