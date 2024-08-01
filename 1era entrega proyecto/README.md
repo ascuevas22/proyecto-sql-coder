@@ -153,7 +153,7 @@ GROUP BY
 **Descripción:** Este trigger asigna la fecha actual si no se proporciona una al momento de realizarse una venta.
 
 * **Tabla afectada:** VENTAS
-* * **Acción:** INSERT
+* **Acción:** INSERT
 * **Información registrada:** fecha
 
 * **Ejemplo:**
@@ -187,10 +187,24 @@ CALL UpdateProductoInventario(product_id, branch_id, new_quantity);
 
 ### Procedimiento: RegistrarNuevoCliente
 
-RegisterNewClient
+**Descripción:** Este procedimiento permite agregar un nuevo cliente a la tabla CLIENTE, asegurándose de que todos los campos obligatorios sean proporcionados.
 
+**Parámetros:**
 
+* **cliente_nombre:** Nombre del nuevo cliente
+* **cliente_telefono:** Telefono del nuevo cliente
+* **cliente_email:** Email del nuevo cliente
+* **cliente_direccion:** Direccion del nuevo cliente
 
+* **Retorno:**
+
+* Agregar un nuevo cliente a la BD asegurando que los campos necesarios se proporcionen correctamente
+
+* **Ejemplo de uso:**
+
+```sql
+CALL RegistrarNuevoCliente('cliente_nombre', 'cliente_telefono', 'cliente_email', 'cliente_direccion');
+```
 
 
 
