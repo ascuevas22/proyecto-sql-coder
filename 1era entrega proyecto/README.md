@@ -214,7 +214,7 @@ CALL RegistrarNuevoCliente('cliente_nombre', 'cliente_telefono', 'cliente_email'
 
 **Parámetros:**
 
-* **cliente_id:** Identificador o ID único del cliente
+**cliente_id:** Identificador o ID único del cliente
 
 **Retorno:**
 
@@ -225,6 +225,26 @@ CALL RegistrarNuevoCliente('cliente_nombre', 'cliente_telefono', 'cliente_email'
 ```sql
 SELECT ObtenerCategoriaNombre(idcategoria );
 ```
+
+### Función: ObtenerPrecioProducto
+
+**Descripción:** Esta funcion se crea con la finalidad de obtener  el precio unitario de un producto ingresando solo su ID
+
+**Parámetros:**
+
+**product_id:** Identificador o ID único del producto
+
+**Retorno:**
+
+* EL precio unitario del producto especifico
+
+**Ejemplo de uso:**
+
+```sql
+SELECT ObtenerPrecioProducto(idproducto);
+```
+
+
 
 
 
