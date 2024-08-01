@@ -1,10 +1,58 @@
 
-USE reservas_app;
+USE repuestos;
 
--- Función para verificar si una mesa está cancelada:
-DROP FUNCTION IF EXISTS mesa_cancelada;
+
+DROP FUNCTION IF EXISTS ObtenerCategoriaNombre;
 DROP FUNCTION IF EXISTS contar_reservas_cliente;
-DROP FUNCTION IF EXISTS cantidad_mesas_por_restaurante;
+
+-- Función para obtener el nombre de una categoria
+
+DELIMITER //
+
+CREATE FUNCTION ObtenerCategoriaNombre(category_id INT) 
+RETURNS VARCHAR (255)
+    
+DETERMINISTIC
+READS SQL DATA
+    
+BEGIN
+    DECLARE category_name VARCHAR(255);
+
+    SELECT nombre INTO category_name
+    FROM CATEGORIA
+    WHERE idcategoria = category_id;
+
+    RETURN category_name;
+END//
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 DELIMITER //
 
