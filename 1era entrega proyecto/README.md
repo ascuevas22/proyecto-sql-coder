@@ -131,5 +131,30 @@ LEFT JOIN
 GROUP BY 
     C.idcategoria, C.nombre;
 ```
+### Documentacion de Triggers
+
+### Trigger: ActualizarVentasPorCliente
+
+**Descripción:** Este trigger permite registrar o actualizar las ventas por cliente en una tabla dedicada cada vez que se realizan nuevas ventas
+
+* **Tabla afectada:** VENTAS_POR_CLIENTE
+* **Acción:** INSERT
+* **Información registrada:** idcliente, total_ventas
+
+* **Ejemplo:**
+
+* Se inserta una nueva venta
+* El trigger verifica si el cliente ya tiene un registro en la tabla VENTAS_POR_CLIENTE
+* Si existe en la tabla, se actualiza el total de ventas
+* Si no existe el cliente en la tabla, se crea un nuevo registro
+
+### Trigger: BeforeInsertVenta
+
+**Descripción:** Este trigger asigna la fecha actual si no se proporciona una al momento de realizarse una venta.
+
+* **Tabla afectada:** VENTAS
+* * **Acción:** INSERT
+* **Información registrada:** fecha
+
 
 
