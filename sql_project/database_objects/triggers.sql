@@ -34,6 +34,23 @@ END //
 
 DELIMITER ;
 
+-- Trigger que asigna automaticamente la fecha actual a la tabla ventas antes de insertar una nueva venta en la tabla si esta no se proporciona
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_venta
+BEFORE INSERT ON VENTAS
+FOR EACH ROW
+BEGIN
+    -- Asignar la fecha actual si no se proporciona una
+    
+    IF NEW.fecha IS NULL THEN
+        SET NEW.fecha = CURDATE();
+    END IF;
+END//
+
+DELIMITER ;
+
 
 
 
