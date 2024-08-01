@@ -1,7 +1,7 @@
 USE repuestos;
 
 DROP PROCEDURE IF EXISTS UpdateProductoInventario;
-DROP PROCEDURE IF EXISTS actualizar_tipo_reserva_por_email;
+DROP PROCEDURE IF EXISTS RegistrarNuevoCliente;
 
 DELIMITER //
 
@@ -31,6 +31,24 @@ BEGIN
         SET cantidad = new_quantity
         WHERE idproducto = product_id AND idsucursal = branch_id;
     END IF;
+END//
+
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE PROCEDURE RegistrarNuevoCliente(
+    IN cliente_nombre VARCHAR(255),
+    IN cliente_telefono VARCHAR(20),
+    IN cliente_email VARCHAR(255),
+    IN cliente_direccion VARCHAR(255)
+)
+BEGIN
+    -- Insertar un nuevo cliente en la tabla CLIENTE
+    
+    INSERT INTO CLIENTE (nombre, telefono, correo, direccion)
+    VALUES (cliente_nombre, cliente_telefono, cliente_email, cliente_direccion);
 END//
 
 DELIMITER ;
