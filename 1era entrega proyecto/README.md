@@ -206,5 +206,27 @@ CALL UpdateProductoInventario(product_id, branch_id, new_quantity);
 CALL RegistrarNuevoCliente('cliente_nombre', 'cliente_telefono', 'cliente_email', 'cliente_direccion');
 ```
 
+## Documentación de Funciones 
+
+### Función: ObtenerCategoriaNombre
+
+**Descripción:** Esta función recibe el idcategoria y devuelve el nombre de la categoría correspondiente.
+
+**Parámetros:**
+
+* **cliente_id:** Identificador o ID único del cliente
+
+**Retorno:**
+
+* EL nombre de la categoria como texto
+
+**Ejemplo de uso:**
+
+```sql
+SELECT ObtenerCategoriaNombre(idcategoria );
+```
+
+
+
 
 
