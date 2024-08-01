@@ -1,8 +1,79 @@
-USE reservas_app;
+USE repuestos;
 
-DROP PROCEDURE IF EXISTS actualizar_reserva_cancelada_por_email;
+DROP PROCEDURE IF EXISTS UpdateProductoInventario;
 DROP PROCEDURE IF EXISTS actualizar_tipo_reserva_por_email;
-DROP PROCEDURE IF EXISTS crear_empleado;
+
+DELIMITER //
+
+CREATE PROCEDURE UpdateProductoInventario(
+    IN product_id INT,
+    IN branch_id INT,
+    IN new_quantity INT
+)
+BEGIN
+    DECLARE current_stock INT;
+    
+    -- Obtener el stock actual del producto en la sucursal específica
+
+    SELECT cantidad INTO current_stock
+    FROM INVENTARIO
+    WHERE idproducto = product_id AND idsucursal = branch_id;
+
+    -- Verificar que la cantidad nueva no sea negativa
+
+    IF new_quantity < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'La cantidad nueva no puede ser negativa';
+    ELSE
+        -- Actualizar la cantidad en el inventario
+        
+        UPDATE INVENTARIO
+        SET cantidad = new_quantity
+        WHERE idproducto = product_id AND idsucursal = branch_id;
+    END IF;
+END//
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 DELIMITER //
 
