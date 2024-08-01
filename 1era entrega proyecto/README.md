@@ -156,5 +156,41 @@ GROUP BY
 * * **Acción:** INSERT
 * **Información registrada:** fecha
 
+* **Ejemplo:**
+
+* Se inserta una nueva venta
+* Si la nueva venta no se le asigna una fecha , el trigger le asigna la fecha actual
+
+
+## Documentación de Procedimientos Almacenados
+
+### Procedimiento: UpdateProductoInventario
+
+**Descripción:** Este procedimiento actualiza la cantidad de un producto en el inventario de una sucursal específica, con una verificación para evitar cantidades negativas.
+
+**Parámetros:**
+
+* **product_id:** ID del producto
+* **branch_id:** ID de la sucursal
+* **new_quantity:** nueva cantidad actualizada de inventario
+
+* **Retorno:**
+
+* Si la nueva cantidad es negativa se mostrará el mensaje 'La cantidad nueva no puede ser negativa'
+* Si la nueva cantidad es positiva se actualizará el inventario del producto asociado a la sucursal
+
+* **Ejemplo de uso:**
+
+```sql
+CALL UpdateProductoInventario(product_id, branch_id, new_quantity);
+```
+
+### Procedimiento: RegistrarNuevoCliente
+
+RegisterNewClient
+
+
+
+
 
 
