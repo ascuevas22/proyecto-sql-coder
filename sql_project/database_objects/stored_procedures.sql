@@ -12,24 +12,27 @@ CREATE PROCEDURE UpdateProductoInventario(
 )
 BEGIN
     DECLARE current_stock INT;
-    
-    -- Obtener el stock actual del producto en la sucursal específica
+    DECLARE total_products INT;
 
-    SELECT cantidad INTO current_stock
+    -- Verificar si el producto y la sucursal existen en la tabla INVENTARIO
+    SELECT COUNT(*) INTO total_products
     FROM INVENTARIO
     WHERE idproducto = product_id AND idsucursal = branch_id;
 
-    -- Verificar que la cantidad nueva no sea negativa
-
-    IF new_quantity < 0 THEN
+    IF total_products = 0 THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'La cantidad nueva no puede ser negativa';
+        SET MESSAGE_TEXT = 'El producto o la sucursal no existen en el inventario';
     ELSE
-        -- Actualizar la cantidad en el inventario
-        
-        UPDATE INVENTARIO
-        SET cantidad = new_quantity
-        WHERE idproducto = product_id AND idsucursal = branch_id;
+        -- Verificar que la cantidad nueva no sea negativa
+        IF new_quantity < 0 THEN
+            SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'La cantidad nueva no puede ser negativa';
+        ELSE
+            -- Actualizar la cantidad en el inventario
+            UPDATE INVENTARIO
+            SET cantidad = new_quantity
+            WHERE idproducto = product_id AND idsucursal = branch_id;
+        END IF;
     END IF;
 END//
 
