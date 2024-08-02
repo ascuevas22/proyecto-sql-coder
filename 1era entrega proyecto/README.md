@@ -176,8 +176,9 @@ GROUP BY
 
 * **Retorno:**
 
-* Si la nueva cantidad es negativa se mostrará el mensaje 'La cantidad nueva no puede ser negativa'
-* Si la nueva cantidad es positiva se actualizará el inventario del producto asociado a la sucursal
+* Si el producto o la sucursal ingresada no existen se envia un mensaje de error.
+* Si la nueva cantidad es negativa, se envia un mensaje de error
+* Si la nueva es positiva se actualiza el inventario del producto en la sucursal
 
 * **Ejemplo de uso:**
 
@@ -198,7 +199,8 @@ CALL UpdateProductoInventario(product_id, branch_id, new_quantity);
 
 * **Retorno:**
 
-* Agregar un nuevo cliente a la BD asegurando que los campos necesarios se proporcionen correctamente
+* Se verifica si ya existe un cliente registrado con el mismo correo, si es asi se envia un mensaje de error
+* Si el cliente y el correo no estan registradosse inserta el nuevo cliente en la table CLIENTE
 
 * **Ejemplo de uso:**
 
